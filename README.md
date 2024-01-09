@@ -11,4 +11,4 @@ Approach:
 1. we'll be using the spotify api and get the top global songs, [remember- the playlist updates on weekly basis] 
 2. write python code for extraction,transformation,loading and deploy on aws lambda
 3. use amazon cloudwatch for scheduling triggers/events, ex- adding trigger that will call the lambda function to extract data from spotify on timely basis and load the raw data on s3.
-4. once the raw data is stored on s3, we will add another trigger that will call the  the lambda function to transform data.
+4. once the raw data is stored on s3, we will add another trigger that will call the  the lambda function to transform data and store the transformed data on s3 again.
