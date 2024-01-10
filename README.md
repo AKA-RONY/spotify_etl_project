@@ -1,4 +1,4 @@
-# spotify_etl_project
+# Spotify_ETL_Pipeline
 
 problem statement: 
     we have a client who is passionate about music industry , and he wants to understand the music industry by collecting data and finding insights out of it. 
