@@ -14,6 +14,17 @@ Workflow:
 5. once we got the transformed data, the glue crawler will run and it will go through each n every file on the s3 bucket and will fetch number of columns , column names, datatypes it has, etc. after that it will build a glue catalog that will have the information of the meta data like no. of columns, types of it.
 6. Once we have the glue catalog , we can simply use the amazon athena to run sql queries on top of it for futher analysis.
 
+Approach:
+1. created a python file on local pc to test the ELT script. Explored the spotify api, cleaned the data, fetched necessary data, did some transformations and finally convert the data into DataFrame.
+2. Deployed our ETL script on AWS cloud platform. Used lamda to do all the transformation, extraction and loading the data to storage location (s3).
+3. Data extracted is stored in 'to_be_processed' sub-directory.
+4. Nxt comes transformation where another lamda function is used to process and transform the data and move it into another sub-directory 'transformed_data' where there are 3 more sub-directory [album_data, song_data, artist_data] where after transforming the data into csv form is stored.
+5. Also a copy of the 'to_be_processed' file is copied to 'rocessed' sub-directory after transformation, and its deleted from 'to_be_processed' directory. since we dont want to transform the same data again and again.
+6. Nxt we have implemented trigger using aws cloudwatch where it will help us automate the entire ETL process, by extracting the raw data on timely basis[hourly,weekly,monthly] and s3 to invoke transformation trigger whenever the data is stored in 'to_be_processed' folder.
+7. nxt we have used aws glue crawler to crawl through each and every transformed data and create a glue catalog, once its done we can run analytical queries on top of the data using athena directly from s3 bucket and perform our analysis and gain insigts out of it.
+8. we could also implement visualisation tool like quicksight to find patterns and make informative and effective business decisions.
+   
+
 Tools and libraries:
 1. jupyter notebook
 2. spotipy lib for connecting spotify API & collecting spotify data
